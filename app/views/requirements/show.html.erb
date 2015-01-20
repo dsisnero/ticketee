@@ -2,3 +2,6 @@
   <h2><%= @requirement.title %></h2>
   <%= simple_format(@requirement.requirements) %>
   </div>
+
+
+<%= link_to "Edit Requirement", [:edit, @project, @requirement] %>

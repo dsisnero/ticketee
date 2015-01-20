@@ -21,7 +21,22 @@ class RequirementsController < ApplicationController
   def show
   end
 
+  def edit
+  end
 
+  def update
+    if @requirement.update(requirement_params)
+      flash[:notice] = "Requirement has been updated."
+
+      redirect_to [@project,@requirement]
+    else
+
+      flash[:alert] = "Requirement has not been updated."
+
+      render action: "edit"
+
+    end
+  end
 
   private
 
