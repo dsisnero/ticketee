@@ -8,5 +8,14 @@
   data: { confirm: "Are you sure you want to delete this project?"
         } %>
 
+<ul id="requirements">
+  <% @project.requirements.each do |requirement| %>
+    <li #<%= requirement.id %>>
+      <%= link_to requirement.title, [@project, requirement] %>
+    </li>
+  <% end %>
+</ul>
 
+<div>
 <%= link_to "New Requirement", new_project_requirement_path(@project) %>
+</div>
