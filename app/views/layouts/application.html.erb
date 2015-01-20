@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>
-    <% if content_for?(:title) %>
-      <%= yield(:title) %>
-    <% else %>
-      Ticketee
-    <% end %>
-  </title>	  
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-<% flash.each do |key,value| %>
-  <div class='flash' id='<%= key %>'>
-    <%= value %>
-  </div>
-<% end %>
-<%= yield %>
-
-</body>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Ticketee" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Ticketee" %>">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%# Modernizr is required for Zurb Foundation %>
+    <%= javascript_include_tag 'vendor/modernizr' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <header>
+      <%= render 'layouts/navigation' %>
+    </header>
+    <main role="main">
+      <%= render 'layouts/messages' %>
+      <%= yield %>
+    </main>
+    <footer class="row">
+      <section class="small-4 columns">
+	Copyright 2013
+      </section>
+      <section class="small-8 columns">
+	All rights reserved.
+      </section>
+    </footer>
+  </body>
 </html>
